@@ -4,6 +4,21 @@
   --add-button: #d88771;
 }
 
+@keyframes removeTodo {
+  from {
+    opacity: 1;
+    transform: rotate(0) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: rotate(2deg) translateY(2rem);
+  }
+}
+
+.remove-todo {
+  animation: removeTodo 0.5s forwards ease-in-out;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -144,6 +159,14 @@ li {
   align-items: center;
   background-color: #fff;
   display: flex;
+}
+
+li[data-complete="true"] {
+  opacity: 0.75;
+}
+
+li[data-complete="true"] > p {
+  text-decoration: line-through;
 }
 
 li:not(:last-child) {
