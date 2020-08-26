@@ -30,6 +30,7 @@ body {
 h1 {
   color: #fff;
   font-size: 3.5rem;
+  margin: 5rem 0;
   text-align: center;
 }
 
@@ -86,8 +87,8 @@ button {
 }
 
 .select {
-  display: flex;
   margin-left: 1rem;
+  position: relative;
 }
 
 .select,
@@ -100,20 +101,25 @@ select {
   appearance: none;
   border: none;
   color: var(--danger);
-  display: block;
   font-weight: 500;
+  height: 100%;
   padding-left: 1rem;
-  width: 8rem;
+  width: 10rem;
 }
 
 .select::after {
   background-color: var(--danger);
+  bottom: 0;
   color: #fff;
   align-items: center;
   content: "\25BC";
   display: flex;
   font-size: 1.5rem;
   padding: 0 0.5rem;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
