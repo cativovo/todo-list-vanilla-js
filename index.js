@@ -42,12 +42,12 @@ function filterTodos() {
 
   for (let i = 0; i < children.length; i++) {
     const element = children[i];
+    const isComplete = element.dataset.complete === "true";
+
     if (this.value === "COMPLETE") {
-      const isComplete = element.dataset.complete === "true";
       element.style.display = isComplete ? "flex" : "none";
     } else if (this.value === "UNCOMPLETE") {
-      const isComplete = element.dataset.complete !== "true";
-      element.style.display = isComplete ? "flex" : "none";
+      element.style.display = isComplete ? "none" : "flex";
     } else {
       element.style.display = "flex";
     }
