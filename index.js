@@ -16,7 +16,7 @@ const saveTodos = (todos) => {
   localStorage.setItem("todos", stringifiedTodos);
 };
 
-function checkTodo() {
+function toggleTodo() {
   const currentLiElement = this.parentElement.parentElement;
   const isComplete = currentLiElement.dataset.complete === "true";
   currentLiElement.dataset.complete = !isComplete;
@@ -65,7 +65,7 @@ const createLiElement = (text, id) => {
   timesButton.className = "times-button";
   buttonGroup.className = "button-group";
 
-  checkButton.addEventListener("click", checkTodo);
+  checkButton.addEventListener("click", toggleTodo);
   timesButton.addEventListener("click", removeTodo);
 
   p.textContent = text;
