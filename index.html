@@ -2,9 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title></title>
+    <title>TODO LIST</title>
+    <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
-    <h1>HI</h1>
+    <h1>TODO List</h1>
+    <div class="form-group">
+      <form>
+        <input type="text" name="content" />
+        <button type="submit"><span/></button>
+      </form>
+      <div class="select">
+        <select name="type">
+          <option value="ALL">All</option>
+          <option value="COMPLETED">Complete</option>
+          <option value="UNCOMPLETE">Uncomplete</option>
+        </select>
+      </div>
+    </div>
+
+    <ul>
+      <li>
+          <p>
+        this is a list item
+          </p>
+        <div class="button-group">
+          <button class="check-button"/>
+          <button class="times-button"/>
+        </div>
+      </li>
+    </ul>
   </body>
 </html>
