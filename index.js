@@ -1,7 +1,60 @@
-const form = document.querySelector("form");
 const ul = document.querySelector("ul");
 
-const createLiElement = (text) => {
+const getTodos = () => {
+  const stringifiedTodos = localStorage.getItem("todos");
+
+  if (!stringifiedTodos) {
+    return [];
+  }
+
+  return JSON.parse(stringifiedTodos);
+};
+
+const saveTodos = (todos) => {
+  const stringifiedTodos = JSON.stringify(todos);
+
+  localStorage.setItem("todos", stringifiedTodos);
+};
+
+function checkTodo() {
+  const currentLiElement = this.parentElement.parentElement;
+  const isComplete = currentLiElement.dataset.complete === "true";
+  currentLiElement.dataset.complete = !isComplete;
+}
+
+function removeTodo() {
+  const currentLiElement = this.parentElement.parentElement;
+  const { id } = currentLiElement.dataset;
+
+  currentLiElement.className = "remove-todo";
+
+  const todos = getTodos();
+  const newTodos = todos.filter((todo) => todo.id !== id);
+  saveTodos(newTodos);
+
+  setTimeout(() => {
+    currentLiElement.remove();
+  }, 500);
+}
+
+function filterTodos() {
+  const { children } = ul;
+
+  for (let i = 0; i < children.length; i++) {
+    const element = children[i];
+    if (this.value === "COMPLETE") {
+      const isComplete = element.dataset.complete === "true";
+      element.style.display = isComplete ? "flex" : "none";
+    } else if (this.value === "UNCOMPLETE") {
+      const isComplete = element.dataset.complete !== "true";
+      element.style.display = isComplete ? "flex" : "none";
+    } else {
+      element.style.display = "flex";
+    }
+  }
+}
+
+const createLiElement = (text, id) => {
   const li = document.createElement("li");
   const checkButton = document.createElement("button");
   const timesButton = document.createElement("button");
@@ -12,7 +65,12 @@ const createLiElement = (text) => {
   timesButton.className = "times-button";
   buttonGroup.className = "button-group";
 
+  checkButton.addEventListener("click", checkTodo);
+  timesButton.addEventListener("click", removeTodo);
+
   p.textContent = text;
+  li.dataset.complete = false;
+  li.dataset.id = id;
 
   buttonGroup.append(checkButton, timesButton);
   li.append(p, buttonGroup);
@@ -20,14 +78,40 @@ const createLiElement = (text) => {
   return li;
 };
 
-form.addEventListener("submit", (e) => {
+const createId = () =>
+  Math.random()
+    .toString(36)
+    .substr(2, 5);
+
+const addTodo = (e) => {
   e.preventDefault();
 
   const text = e.target.content.value;
 
-  console.log(text);
-  const li = createLiElement(text);
-  ul.append(li);
+  if (text) {
+    const id = createId();
+    const todos = getTodos();
 
-  e.target.reset();
-});
+    const li = createLiElement(text, id);
+    const todo = { text, id };
+
+    ul.append(li);
+    saveTodos([...todos, todo]);
+
+    e.target.reset();
+  }
+};
+
+const handleLoad = () => {
+  const todos = getTodos();
+  const liElements = todos.map(({ text, id }) => createLiElement(text, id));
+
+  ul.append(...liElements);
+};
+
+const form = document.querySelector("form");
+const select = document.querySelector("select");
+
+window.addEventListener("load", handleLoad);
+form.addEventListener("submit", addTodo);
+select.addEventListener("change", filterTodos);
