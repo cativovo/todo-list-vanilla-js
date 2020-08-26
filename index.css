@@ -1,0 +1,165 @@
+:root {
+  --primary: #49cc49;
+  --danger: #ff6f47;
+  --add-button: #d88771;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: linear-gradient(120deg, #f6d365, #fda085);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #383838;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 62.5%;
+  height: 100vh;
+  width: 100vw;
+}
+
+h1 {
+  color: #fff;
+  font-size: 3.5rem;
+  text-align: center;
+}
+
+button {
+  cursor: pointer;
+}
+
+.form-group {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.form-group form {
+  display: flex;
+}
+
+.form-group button {
+  background-color: #fff;
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  font-weight: 900;
+  margin-left: 0.5rem;
+  padding: 0.5rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.form-group button > span {
+  background-color: var(--add-button);
+  border-radius: 3px;
+  display: inline-block;
+  padding: 0 0.5rem;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.form-group button:hover {
+  background-color: var(--add-button);
+}
+
+.form-group button:hover > span {
+  background-color: #fff;
+  color: var(--add-button);
+}
+
+.form-group button > span::after {
+  content: "\271A";
+}
+
+.form-group input {
+  font-size: 1.6rem;
+  color: inherit;
+  width: 30rem;
+}
+
+.select {
+  display: flex;
+  margin-left: 1rem;
+}
+
+.select,
+select {
+  cursor: pointer;
+}
+
+select {
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  color: var(--danger);
+  display: block;
+  font-weight: 500;
+  padding-left: 1rem;
+  width: 8rem;
+}
+
+.select::after {
+  background-color: var(--danger);
+  color: #fff;
+  align-items: center;
+  content: "\25BC";
+  display: flex;
+  font-size: 1.5rem;
+  padding: 0 0.5rem;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.select:hover::after {
+  background-color: #fff;
+  color: var(--danger);
+}
+
+ul {
+  margin: 0 auto;
+  max-width: 70rem;
+  padding: 0 1.5rem;
+}
+
+li {
+  align-items: center;
+  background-color: #fff;
+  display: flex;
+}
+
+li > p {
+  flex: 1;
+  font-size: 1.6rem;
+  padding: 0.5rem 0.8rem;
+}
+
+.check-button,
+.times-button {
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  padding: 0.3rem 0.7rem;
+}
+
+.check-button {
+  background-color: var(--primary);
+}
+
+.check-button:after {
+  content: "\2714";
+}
+
+.times-button {
+  background-color: var(--danger);
+}
+
+.times-button:after {
+  content: "\2718";
+}
