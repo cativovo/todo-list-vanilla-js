@@ -19,6 +19,18 @@ const saveTodos = (todos) => {
 function toggleTodo() {
   const currentLiElement = this.parentElement.parentElement;
   const isComplete = currentLiElement.dataset.complete === "true";
+  const todos = getTodos();
+
+  const newTodos = todos.map((todo) => {
+    if (todo.id === id) {
+      todo.complete = !isComplete;
+    }
+
+    return todo;
+  });
+
+  saveTodos(newTodos);
+
   currentLiElement.dataset.complete = !isComplete;
 }
 
